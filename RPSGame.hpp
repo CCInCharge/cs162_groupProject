@@ -16,17 +16,24 @@
 
 class RPSGame {
 private:
-    int humanNumWins;
-    int computerNumWins;
+    int numHumanWins;
+    int numComputerWins;
     int numTies;
+    int roundNumber;
     Tool *humanTool;
     Tool *computerTool;
-    int getInput();
-    int displayMenu();
+    int displayToolMenu();
+    bool displayIsNonDefaultMenu();
+    int displayStrengthMenu();
     int computerPick();
+    void createTool(std::string humanOrComputer, int menuChoice, int nonDefaultStrength);
+    void playRound();
 public:
     RPSGame();
     void gameSequence();
+    int getNumTies();
+    int getNumHumanWins();
+    int getNumComputerWins();
     ~RPSGame();
 };
 
