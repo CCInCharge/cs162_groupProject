@@ -17,7 +17,7 @@
 
 RPSGame::RPSGame() {
     /*
-    Description: Default constructor.
+    Description: Default constructor. Initialize variables and set pointers to 0.
     */
     numHumanWins = 0;
     numComputerWins = 0;
@@ -75,6 +75,7 @@ bool RPSGame::displayIsNonDefaultMenu() {
 
     std::cout << "Do you want to choose non-default strengths for each tool?" << std::endl;
     while (!(isOk)) {
+        std::cin.ignore();
         std::cout << "Enter your choice (y / n): ";
         std::cin >> charChoice;
 
@@ -127,6 +128,43 @@ int RPSGame::displayStrengthMenu(std::string humanOrComputer) {
 
     return choice;
 }
+
+
+
+bool RPSGame::displayPlayAgainMenu() {
+    /*
+    Description: Gets whether the user wants to play again or not.
+    */
+    /*
+    Description: Gets whether the user wants default strength or not.
+    */
+    char charChoice;
+    char goodChars[] = "YyNn";
+    bool isOk;
+
+    std::cout << "Do you want to play again?" << std::endl;
+    while (!(isOk)) {
+        std::cin.ignore();
+        std::cout << "Enter your choice (y / n): ";
+        std::cin >> charChoice;
+
+        // Loop through all of the acceptable characters and check to see if it is one of those.
+        for (int i = 0; i < 4; i++) {
+            if (charChoice == goodChars[i]) {
+                isOk = true;
+            }
+        }
+
+        // Prompt the user for another entry if it's not OK.
+        if (!(isOk)) {
+            std::cout << "Sorry - not a valid option." << std::endl;
+        }
+    }
+
+    // Return the truth value of whether they entered yes or not.
+    return (charChoice == 'Y' || charChoice == 'y');
+}
+
 
 
 int RPSGame::computerPick() {
@@ -250,18 +288,21 @@ void RPSGame::gameSequence() {
     int humanStrength = 0, computerStrength = 0;
     int out = displayToolMenu();
     int compOut = computerPick();
-    bool hasNonDefaultStrength;
+    bool hasNonDefaultStrength, playAgain;
 
     hasNonDefaultStrength = displayIsNonDefaultMenu();
     if (hasNonDefaultStrength) {
         humanStrength = displayStrengthMenu("human");
         computerStrength = displayStrengthMenu("computer");
     }
+    playAgain = displayPlayAgainMenu();
+
     std::cout << "User chooses " << out << std::endl;
     std::cout << "computer chooses " << compOut << std::endl;
     std::cout << "Non default strength? " << hasNonDefaultStrength << std::endl;
     std::cout << "Human strength: " << humanStrength << std::endl;
     std::cout << "Computer strength: " << computerStrength << std::endl;
+    std::cout << "User wants to play again: " << playAgain << std::endl;
 }
 
 
