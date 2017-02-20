@@ -40,7 +40,7 @@ Scissors::Scissors(const Scissors &RHS) : Tool(RHS)
 
 /*
 operator=(const Scissors &RHS)
-Assignment overload changes the attributes of one Paper to match that of
+Assignment overload changes the attributes of one Scissors to match that of
 the other
 */
 Scissors& Scissors::operator=(const Scissors &RHS)
