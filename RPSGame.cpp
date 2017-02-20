@@ -270,7 +270,7 @@ void RPSGame::playRound() {
     }
 
     // Display the current stats.
-    std::cout << "\nCurrent Score after " << roundNumber << " rounds:" << std::endl;
+    std::cout << "\nCurrent Score after " << roundNumber << " round(s):" << std::endl;
     std::cout << "You: " << numHumanWins << ", ";
     std::cout << "Computer: " << numComputerWins << ", ";
     std::cout << "Ties: " << numTies << std::endl;
@@ -295,12 +295,12 @@ void RPSGame::gameSequence() {
     /*
     Description: Goes through and plays the game itself.
     */
-    bool isDone = false;
+    bool playAgain = false;
 
     do {
         playRound();
-        isDone = displayPlayAgainMenu();
-    } while (!(isDone));
+        playAgain = displayPlayAgainMenu();
+    } while (playAgain);
 }
 
 
