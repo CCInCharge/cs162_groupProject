@@ -9,6 +9,10 @@
 #define RPSGAME_HPP
 
 #include <string>
+#include "Tool.hpp"
+#include "Rock.hpp"
+#include "Paper.hpp"
+#include "Scissors.hpp"
 
 class RPSGame {
 private:
@@ -17,13 +21,12 @@ private:
     int numTies;
     Tool *humanTool;
     Tool *computerTool;
-    int getInt(int min, int max);
-    int displayMenu(std::string lines[], int numLines);
+    int getInput();
+    int displayMenu();
+    int computerPick();
 public:
     RPSGame();
-    RPSGame(Tool *humanToolChoice, Tool *computerToolChoice);
     void gameSequence();
-    int computerPick();
     ~RPSGame();
 };
 

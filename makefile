@@ -5,7 +5,7 @@
 CXX = g++
 CXXFLAGS = -std=c++0x
 OBJS = Paper.o Rock.o Scissors.o Tool.o RPSGame.o testTools.o
-SRCS = Paper.cpp Rock.cpp Scissors.cpp Tool.cpp testTools.cpp RPSGame.cpp
+SRCS = Paper.cpp Rock.cpp Scissors.cpp Tool.cpp RPSGame.cpp testTools.cpp
 
 all: ${OBJS}
 	${CXX} ${OBJS} -o GroupProject

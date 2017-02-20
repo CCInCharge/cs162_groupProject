@@ -12,8 +12,7 @@ Specification of Scissors class.
 #ifndef SCISSORS_HPP
 #define SCISSORS_HPP
 
-class Scissors : public Tool
-{
+class Scissors : public Tool {
 public:
     Scissors();
     Scissors(int strength);
