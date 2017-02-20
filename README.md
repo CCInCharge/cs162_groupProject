@@ -18,3 +18,4 @@ Basic Rock/Paper/Scissors game. Allows the user to select their choice and battl
 ### Notes from Development:
 
 - Need to include `std::srand(std::time(NULL));` in main() to avoid issues with random numbers
+- Required to merge all header files into one. Project requirement.

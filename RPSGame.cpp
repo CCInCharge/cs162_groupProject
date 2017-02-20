@@ -257,13 +257,23 @@ void RPSGame::playRound() {
     outcome = humanTool->fight(computerTool);
 
     // Allocate wins.
+    std::cout << "\n";
     if (outcome == "win") {
+        std::cout << "You won!" << std::endl;
         numHumanWins++;
     } else if (outcome == "loss") {
+        std::cout << "The computer won." << std::endl;
         numComputerWins++;
     } else {
+        std::cout << "It was a tie!" << std::endl;
         numTies++;
     }
+
+    // Display the current stats.
+    std::cout << "\nCurrent Score:" << std::endl;
+    std::cout << "You: " << numHumanWins << ", ";
+    std::cout << "Computer: " << numComputerWins << ", ";
+    std::cout << "Ties: " << numTies << std::endl;
 
     // Clean up objects.
     if (humanTool != 0) {
@@ -285,24 +295,12 @@ void RPSGame::gameSequence() {
     /*
     Description: Goes through and plays the game itself.
     */
-    int humanStrength = 0, computerStrength = 0;
-    int out = displayToolMenu();
-    int compOut = computerPick();
-    bool hasNonDefaultStrength, playAgain;
+    bool isDone = false;
 
-    hasNonDefaultStrength = displayIsNonDefaultMenu();
-    if (hasNonDefaultStrength) {
-        humanStrength = displayStrengthMenu("human");
-        computerStrength = displayStrengthMenu("computer");
-    }
-    playAgain = displayPlayAgainMenu();
-
-    std::cout << "User chooses " << out << std::endl;
-    std::cout << "computer chooses " << compOut << std::endl;
-    std::cout << "Non default strength? " << hasNonDefaultStrength << std::endl;
-    std::cout << "Human strength: " << humanStrength << std::endl;
-    std::cout << "Computer strength: " << computerStrength << std::endl;
-    std::cout << "User wants to play again: " << playAgain << std::endl;
+    do {
+        playRound();
+        isDone = displayPlayAgainMenu();
+    } while (!(isDone));
 }
 
 
