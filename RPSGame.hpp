@@ -8,6 +8,8 @@
 #ifndef RPSGAME_HPP
 #define RPSGAME_HPP
 
+#include <string>
+
 class RPSGame {
 private:
     int humanNumWins;
@@ -15,6 +17,8 @@ private:
     int numTies;
     Tool *humanTool;
     Tool *computerTool;
+    int getInt(int min, int max);
+    int displayMenu(std::string lines[], int numLines);
 public:
     RPSGame();
     RPSGame(Tool *humanToolChoice, Tool *computerToolChoice);

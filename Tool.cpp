@@ -12,8 +12,7 @@ Implementation of Tool class.
 Tool()
 Default constructor creates a new Tool with strength 1
 */
-Tool::Tool()
-{
+Tool::Tool() {
     setStrength(1);
     this->type[0] = 't';
     this->type[1] = '\0';
@@ -23,8 +22,7 @@ Tool::Tool()
 Tool(int strength)
 Constructor creates a new Tool with specified strength.
 */
-Tool::Tool(int strength)
-{
+Tool::Tool(int strength) {
     setStrength(strength);
     this->type[0] = 't';
     this->type[1] = '\0';
@@ -34,8 +32,7 @@ Tool::Tool(int strength)
 Tool(const Tool &RHS)
 Copy constructor creates a new Tool with the same strength as another
 */
-Tool::Tool(const Tool &RHS)
-{
+Tool::Tool(const Tool &RHS) {
     this->setStrength(RHS.getStrength());
     this->type[0] = 't';
     this->type[1] = '\0';
@@ -46,8 +43,7 @@ operator=(const Tool &RHS)
 Assignment overload changes the attributes of one Tool to match that of
 the other
 */
-Tool& Tool::operator=(const Tool &RHS)
-{
+Tool& Tool::operator=(const Tool &RHS) {
     if (this != &RHS)
     {
         this->setStrength(RHS.getStrength());
@@ -67,8 +63,7 @@ Tool::~Tool(){}
 void setStrength(int Strength)
 Setter method which sets a Tool's strength
 */
-void Tool::setStrength(int strength)
-{
+void Tool::setStrength(int strength) {
     this->strength = strength;
     return;
 }
@@ -77,8 +72,7 @@ void Tool::setStrength(int strength)
 int getStrength()
 Getter method which returns the Tool's strength
 */
-int Tool::getStrength() const
-{
+int Tool::getStrength() const {
     return strength;
 }
 
@@ -86,7 +80,6 @@ int Tool::getStrength() const
 char getType()
 Getter method which returns the Tool's type attribute.
 */
-char Tool::getType()
-{
+char Tool::getType() {
     return type[0];
 }
