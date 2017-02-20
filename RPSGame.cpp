@@ -270,7 +270,7 @@ void RPSGame::playRound() {
     }
 
     // Display the current stats.
-    std::cout << "\nCurrent Score:" << std::endl;
+    std::cout << "\nCurrent Score after " << roundNumber << " rounds:" << std::endl;
     std::cout << "You: " << numHumanWins << ", ";
     std::cout << "Computer: " << numComputerWins << ", ";
     std::cout << "Ties: " << numTies << std::endl;
