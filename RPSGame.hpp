@@ -24,7 +24,8 @@ private:
     Tool *computerTool;
     int displayToolMenu();
     bool displayIsNonDefaultMenu();
-    int displayStrengthMenu();
+    int displayStrengthMenu(std::string humanOrComputer);
+    bool displayPlayAgainMenu();
     int computerPick();
     void createTool(std::string humanOrComputer, int menuChoice, int nonDefaultStrength);
     void playRound();

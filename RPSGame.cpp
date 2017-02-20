@@ -97,10 +97,35 @@ bool RPSGame::displayIsNonDefaultMenu() {
 
 
 
-int RPSGame::displayStrengthMenu() {
+int RPSGame::displayStrengthMenu(std::string humanOrComputer) {
     /*
     Description: Prompts the user for the desired strength of their tools.
     */
+    int choice;
+    std::string strInput;
+    bool isOk = false;
+
+    while (!(isOk)) {
+        try {
+            std::cout << "Choose " << humanOrComputer << "'s custom strength. Must be larger than 0." << std::endl;
+            std::cout << "Enter: ";
+            std::cin >> strInput;
+
+            // convert string to int for choice.
+            choice = std::stoi(strInput);
+
+            if (choice >= 1) {
+                isOk = true;
+            } else {
+                std::cout << "Sorry! Needs to be higher than 1." << std::endl;
+            }
+        }
+        catch (const std::invalid_argument& i) {
+            std::cout << "Sorry. Looks like that wasn't a valid number." << std::endl;
+        }
+    }
+
+    return choice;
 }
 
 
@@ -182,8 +207,8 @@ void RPSGame::playRound() {
     // Ask the user if they want non-default strength and get values if yes.
     hasNonDefaultStrength = displayIsNonDefaultMenu();
     if (hasNonDefaultStrength) {
-        humanStrength = displayStrengthMenu();
-        computerStrength = displayStrengthMenu();
+        humanStrength = displayStrengthMenu("human");
+        computerStrength = displayStrengthMenu("computer");
     }
 
     // Ask the user if they want to have non-default strength for any of the tools.
@@ -222,11 +247,21 @@ void RPSGame::gameSequence() {
     /*
     Description: Goes through and plays the game itself.
     */
+    int humanStrength = 0, computerStrength = 0;
     int out = displayToolMenu();
     int compOut = computerPick();
-    bool isND = displayIsNonDefaultMenu();
+    bool hasNonDefaultStrength;
+
+    hasNonDefaultStrength = displayIsNonDefaultMenu();
+    if (hasNonDefaultStrength) {
+        humanStrength = displayStrengthMenu("human");
+        computerStrength = displayStrengthMenu("computer");
+    }
     std::cout << "User chooses " << out << std::endl;
     std::cout << "computer chooses " << compOut << std::endl;
+    std::cout << "Non default strength? " << hasNonDefaultStrength << std::endl;
+    std::cout << "Human strength: " << humanStrength << std::endl;
+    std::cout << "Computer strength: " << computerStrength << std::endl;
 }
 
 
