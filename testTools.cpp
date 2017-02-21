@@ -15,17 +15,8 @@
 #include "RPSGame.hpp"
 
 int main() {
-    Tool* tool1;
-    Tool* tool2;
-    tool1 = new Scissors;
-    tool2 = new Scissors;
-
-    std::cout << tool1->fight(tool2) << std::endl;
-
     RPSGame game = RPSGame();
     game.gameSequence();
 
-    delete tool1;
-    delete tool2;
     return 0;
 }
