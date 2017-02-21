@@ -32,7 +32,7 @@ RPSGame::RPSGame() {
 int RPSGame::displayToolMenu() {
     /*
     Description: Takes a list of list to display and prompts the user to choose a value for them.
-    */  
+    */
     std::string strInput;
     bool isOk = false;
     int choice;
@@ -71,7 +71,7 @@ bool RPSGame::displayIsNonDefaultMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk;
+    bool isOk = false;
 
     std::cout << "Do you want to choose non-default strengths for each tool?" << std::endl;
     while (!(isOk)) {
@@ -140,7 +140,7 @@ bool RPSGame::displayPlayAgainMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk;
+    bool isOk = false;
 
     std::cout << "Do you want to play again?" << std::endl;
     while (!(isOk)) {
