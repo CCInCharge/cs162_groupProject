@@ -6,6 +6,7 @@
 Implementation of Scissors class.
 ******************************************************************************/
 
+#include <iostream>
 #include <string>
 #include "Tool.hpp"
 #include "Scissors.hpp"
@@ -95,4 +96,9 @@ std::string Scissors::fight(Tool* opponentTool)
     {
         return "tie";
     }
+}
+
+void Scissors::printTool() {
+    std::cout << "Scissors with strength of " << getStrength() << std::endl;
+    return;
 }

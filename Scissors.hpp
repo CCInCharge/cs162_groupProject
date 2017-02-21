@@ -20,6 +20,7 @@ public:
     Scissors& operator=(const Scissors &RHS);
     ~Scissors();
     virtual std::string fight(Tool* opponentTool);
+    virtual void printTool();
 };
 
 #endif

@@ -21,6 +21,7 @@ public:
     Paper& operator=(const Paper &RHS);
     virtual ~Paper();
     virtual std::string fight(Tool* opponentTool);
+    virtual void printTool();
 };
 
 #endif

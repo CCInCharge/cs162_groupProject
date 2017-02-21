@@ -256,6 +256,14 @@ void RPSGame::playRound() {
     // Fight the tools.
     outcome = humanTool->fight(computerTool);
 
+    // Print the results.
+    std::cout << "You picked ";
+    humanTool->printTool();
+
+    std::cout << "Computer picked ";
+    computerTool->printTool();
+    std::cout << std::endl;
+
     // Allocate wins.
     std::cout << "\n";
     if (outcome == "win") {

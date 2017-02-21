@@ -21,6 +21,7 @@ public:
     Rock& operator=(const Rock &RHS);
     virtual ~Rock();
     virtual std::string fight(Tool* opponentTool);
+    virtual void printTool();
 };
 
 #endif
