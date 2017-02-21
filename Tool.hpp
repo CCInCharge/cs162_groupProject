@@ -23,6 +23,7 @@ public:
     int getStrength() const;
     char getType();
     virtual std::string fight(Tool* opponentTool) = 0;
+    virtual void printTool() = 0;
 protected:
     int strength;
     char type[2];
