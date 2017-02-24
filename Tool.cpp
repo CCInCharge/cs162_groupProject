@@ -6,7 +6,8 @@
 Implementation of Tool class.
 ******************************************************************************/
 
-#include "Tool.hpp"
+
+#include "mainHeader.hpp"
 
 /*
 Tool()

@@ -8,11 +8,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
-#include "RPSGame.hpp"
-#include "Tool.hpp"
-#include "Scissors.hpp"
-#include "Rock.hpp"
-#include "Paper.hpp"
+#include "mainHeader.hpp"
 
 
 RPSGame::RPSGame() {
@@ -32,12 +28,13 @@ RPSGame::RPSGame() {
 int RPSGame::displayToolMenu() {
     /*
     Description: Takes a list of list to display and prompts the user to choose a value for them.
-    */
+    */  
     std::string strInput;
     bool isOk = false;
     int choice;
 
     // Display menu to the user.
+    std::cout << "\n";
     std::cout << "Please make your selection of tool:" << std::endl;
     std::cout << "1. Rock" << std::endl;
     std::cout << "2. Paper" << std::endl;
@@ -71,8 +68,9 @@ bool RPSGame::displayIsNonDefaultMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk = false;
+    bool isOk;
 
+    std::cout << "\n";
     std::cout << "Do you want to choose non-default strengths for each tool?" << std::endl;
     while (!(isOk)) {
         std::cin.ignore();
@@ -88,7 +86,9 @@ bool RPSGame::displayIsNonDefaultMenu() {
 
         // Prompt the user for another entry if it's not OK.
         if (!(isOk)) {
+            std::cout << "\n";
             std::cout << "Sorry - not a valid option." << std::endl;
+            std::cout << "\n";
         }
     }
 
@@ -108,6 +108,7 @@ int RPSGame::displayStrengthMenu(std::string humanOrComputer) {
 
     while (!(isOk)) {
         try {
+            std::cout << "\n";
             std::cout << "Choose " << humanOrComputer << "'s custom strength. Must be larger than 0." << std::endl;
             std::cout << "Enter: ";
             std::cin >> strInput;
@@ -118,10 +119,12 @@ int RPSGame::displayStrengthMenu(std::string humanOrComputer) {
             if (choice >= 1) {
                 isOk = true;
             } else {
+                std::cout << "\n";
                 std::cout << "Sorry! Needs to be higher than 1." << std::endl;
             }
         }
         catch (const std::invalid_argument& i) {
+            std::cout << "\n";
             std::cout << "Sorry. Looks like that wasn't a valid number." << std::endl;
         }
     }
@@ -140,7 +143,7 @@ bool RPSGame::displayPlayAgainMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk = false;
+    bool isOk;
 
     std::cout << "Do you want to play again?" << std::endl;
     while (!(isOk)) {
@@ -256,14 +259,6 @@ void RPSGame::playRound() {
     // Fight the tools.
     outcome = humanTool->fight(computerTool);
 
-    // Print the results.
-    std::cout << "You picked ";
-    humanTool->printTool();
-
-    std::cout << "Computer picked ";
-    computerTool->printTool();
-    std::cout << std::endl;
-
     // Allocate wins.
     std::cout << "\n";
     if (outcome == "win") {
@@ -282,6 +277,7 @@ void RPSGame::playRound() {
     std::cout << "You: " << numHumanWins << ", ";
     std::cout << "Computer: " << numComputerWins << ", ";
     std::cout << "Ties: " << numTies << std::endl;
+    std::cout << "\n";
 
     // Clean up objects.
     if (humanTool != 0) {
@@ -309,6 +305,9 @@ void RPSGame::gameSequence() {
         playRound();
         playAgain = displayPlayAgainMenu();
     } while (playAgain);
+    std::cout << "\n";
+    std::cout << "Thanks for playing! GoodBye!" << std::endl;
+    std::cout << "\n";
 }
 
 
