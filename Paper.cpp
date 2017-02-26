@@ -69,7 +69,7 @@ std::string Paper::fight(Tool* opponentTool)
 {
     // Set a temporary strength, so that the actual strength attribute is not
     // modified
-    int tempStrength = strength;
+    float tempStrength = strength;
 
     // Temporarily half this Tool's strength if the opponent is Scissors
     // Temporarily double this Tool's strength if the opponent is Rock
