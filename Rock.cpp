@@ -6,6 +6,7 @@
 Implementation of Rock class.
 ******************************************************************************/
 
+#include <iostream>
 #include <string>
 #include "mainHeader.hpp"
 
@@ -94,4 +95,9 @@ std::string Rock::fight(Tool* opponentTool)
     {
         return "tie";
     }
+}
+
+void Rock::printTool() {
+    std::cout << "Rock with strength of " << getStrength() << std::endl;
+    return;
 }

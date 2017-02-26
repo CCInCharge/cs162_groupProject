@@ -6,6 +6,7 @@
 Implementation of Paper class.
 ******************************************************************************/
 
+#include <iostream>
 #include <string>
 #include "mainHeader.hpp"
 
@@ -94,4 +95,9 @@ std::string Paper::fight(Tool* opponentTool)
     {
         return "tie";
     }
+}
+
+void Paper::printTool() {
+    std::cout << "Paper with strength of " << getStrength() << std::endl;
+    return;
 }

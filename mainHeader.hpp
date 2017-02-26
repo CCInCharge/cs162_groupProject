@@ -3,10 +3,6 @@
 
 #include <string>
 
-
-
-
-
 class Tool
 {
 public:
@@ -19,6 +15,7 @@ public:
     int getStrength() const;
     char getType();
     virtual std::string fight(Tool* opponentTool) = 0;
+    virtual void printTool() = 0;
 protected:
     int strength;
     char type[2];
@@ -35,6 +32,7 @@ public:
     Rock& operator=(const Rock &RHS);
     virtual ~Rock();
     virtual std::string fight(Tool* opponentTool);
+    void printTool();
 };
 
 class Paper : public Tool
@@ -46,6 +44,7 @@ public:
     Paper& operator=(const Paper &RHS);
     virtual ~Paper();
     virtual std::string fight(Tool* opponentTool);
+    void printTool();
 };
 
 class Scissors : public Tool {
@@ -56,6 +55,7 @@ public:
     Scissors& operator=(const Scissors &RHS);
     ~Scissors();
     virtual std::string fight(Tool* opponentTool);
+    void printTool();
 };
 
 

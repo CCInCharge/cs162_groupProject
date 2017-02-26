@@ -1,5 +1,5 @@
 /******************************************************************************
-** Program name: Rock.hpp
+** Program name: RPSGame.cpp
 ** Author: Zach Morrissey
 ** Date: 02/19/2017
 ** Description: Container class for the RockPaperScissors game.
@@ -9,7 +9,6 @@
 #include <string>
 #include <stdexcept>
 #include "mainHeader.hpp"
-
 
 RPSGame::RPSGame() {
     /*
@@ -23,12 +22,10 @@ RPSGame::RPSGame() {
     Tool *computerTool = 0;
 }
 
-
-
 int RPSGame::displayToolMenu() {
     /*
-    Description: Takes a list of list to display and prompts the user to choose a value for them.
-    */  
+    Description: Prompts the user to choose tools for human and CPU players
+    */
     std::string strInput;
     bool isOk = false;
     int choice;
@@ -68,7 +65,7 @@ bool RPSGame::displayIsNonDefaultMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk;
+    bool isOk = false;
 
     std::cout << "\n";
     std::cout << "Do you want to choose non-default strengths for each tool?" << std::endl;
@@ -132,8 +129,6 @@ int RPSGame::displayStrengthMenu(std::string humanOrComputer) {
     return choice;
 }
 
-
-
 bool RPSGame::displayPlayAgainMenu() {
     /*
     Description: Gets whether the user wants to play again or not.
@@ -143,7 +138,7 @@ bool RPSGame::displayPlayAgainMenu() {
     */
     char charChoice;
     char goodChars[] = "YyNn";
-    bool isOk;
+    bool isOk = false;
 
     std::cout << "Do you want to play again?" << std::endl;
     while (!(isOk)) {
@@ -168,17 +163,12 @@ bool RPSGame::displayPlayAgainMenu() {
     return (charChoice == 'Y' || charChoice == 'y');
 }
 
-
-
 int RPSGame::computerPick() {
     /*
     Description: Returns a random integer for the computer's choice of tool.
-    TODO: If somebody wants to create a better, smarter version of this, they totally can.
     */
     return (rand() % 3) + 1;
 }
-
-
 
 void RPSGame::createTool(std::string humanOrComputer, int menuChoice, int nonDefaultStrength) {
     /*
@@ -230,34 +220,63 @@ void RPSGame::createTool(std::string humanOrComputer, int menuChoice, int nonDef
     }
 }
 
-
-
 void RPSGame::playRound() {
     /*
     Description: Displays menu, allocates weapons, and fights them.
     Deallocates weapons when done.
     */
-    int humanToolChoice, computerToolChoice, humanStrength = -1, computerStrength = -1;
+    // if round = 1, do this                                    // Beau **
+    // else use saved var for strength                          // Beau **
+    int humanToolChoice, computerToolChoice, humanStrength, computerStrength; // Beau **
+    int rememberHumanStrength = humanStrength;          // this will remember the strength   Beau **
+    int rememberCompStrength = computerStrength;        // this will remember the strength   Beau **
     bool hasNonDefaultStrength;
     std::string outcome;
+
+    if (roundNumber == 1) // Beau **
+    {
+        humanStrength = -1; // Beau **
+        computerStrength = -1; // Beau **
+    }
 
     // display tool selection menus.
     humanToolChoice = displayToolMenu();
     computerToolChoice = computerPick();
 
     // Ask the user if they want non-default strength and get values if yes.
-    hasNonDefaultStrength = displayIsNonDefaultMenu();
-    if (hasNonDefaultStrength) {
-        humanStrength = displayStrengthMenu("human");
-        computerStrength = displayStrengthMenu("computer");
-    }
+    // do this for round 1, save results for later // Beau **
+    if (roundNumber == 1)
+    {
+        hasNonDefaultStrength = displayIsNonDefaultMenu();
+        if (hasNonDefaultStrength) {
+            humanStrength = displayStrengthMenu("human");
+            computerStrength = displayStrengthMenu("computer");
+        }
+        // Remember the strength choices from first round // Beau **
+        rememberHumanStrength = humanStrength; // Beau **
+        rememberCompStrength = computerStrength; // Beau **
 
-    // Ask the user if they want to have non-default strength for any of the tools.
-    createTool("human", humanToolChoice, humanStrength);
-    createTool("computer", computerToolChoice, computerStrength);
+
+        // Ask the user if they want to have non-default strength for any of the tools.
+        createTool("human", humanToolChoice, humanStrength);
+        createTool("computer", computerToolChoice, computerStrength);
+    }
+    else
+    {
+        createTool("human", humanToolChoice, rememberHumanStrength); // Beau **
+        createTool("computer", computerToolChoice, rememberCompStrength); // Beau **
+    }
 
     // Fight the tools.
     outcome = humanTool->fight(computerTool);
+
+    // Print the results.
+    std::cout << "You picked ";
+    humanTool->printTool();
+
+    std::cout << "Computer picked ";
+    computerTool->printTool();
+    std::cout << std::endl;
 
     // Allocate wins.
     std::cout << "\n";
@@ -292,8 +311,6 @@ void RPSGame::playRound() {
     // Increment round number.
     roundNumber++;
 }
-
-
 
 void RPSGame::gameSequence() {
     /*
@@ -335,8 +352,6 @@ int RPSGame::getNumTies() {
     */
     return numTies;
 }
-
-
 
 RPSGame::~RPSGame() {
     /*
